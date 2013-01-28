@@ -12,7 +12,8 @@ class ServerAuth
       #  message['error'] = 'Invalid authentication token'
       #end
     #end
-    callback.call('A: ' + message['channel'] + 'B: ' + message['ext']['auth_token'])
+    Rails.logger.debug(" message['channel'] #{message['channel']} message['ext']['auth_token'] #{message['ext']['auth_token']}")
+    callback.call(message)
   end
 end
 
