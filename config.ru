@@ -13,7 +13,6 @@ class ServerAuth
     #    message['error'] = 'Invalid authentication token'
     #  end
     #end
-    Rails.logger.debug(" test #{message.inspect}")
     callback.call(message)
   end
 end
