@@ -7,11 +7,12 @@ require File.expand_path('../config/initializers/faye_token.rb', __FILE__)
 
 class ServerAuth
   def incoming(message, callback)
-    #if message['channel'] !~ %r{^/meta/}
-      #if message['ext']['auth_token'] != FAYE_TOKEN
-      #  message['error'] = 'Invalid authentication token'
-      #end
-    #end
+    parsed_message = JSON.parse(message)
+    if parsed_message['channel'] !~ %r{^/meta/}
+      if parsed_message['ext']['auth_token'] != FAYE_TOKEN
+        parsed_message['error'] = 'Invalid authentication token'
+      end
+    end
     #Rails.logger.debug(" message['channel'] #{message['channel']} message['ext']['auth_token'] #{message['ext']['auth_token']}")
     callback.call(message)
   end
